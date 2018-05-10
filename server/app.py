@@ -1,23 +1,8 @@
-from flask import Flask
-from flask_sqlalchemy import SQLAlchemy
+import os
+from fjs import create_app
 
-app = Flask(__name__)
-app.config['SQLALCHEMY_DATABASE_URI'] = 'sqlite:////tmp/test.db'
-db = SQLAlchemy(app)
+config_file_path = os.environ.get('APP_CONFIG', None)
+app = create_app(config_file_path)
 
-class User(db.Model):
-    id = db.Column(db.Integer, primary_key=True)
-    username = db.Column(db.String(80), unique=True, nullable=False)
-    email = db.Column(db.String(120), unique=True, nullable=False)
-    
-    def __repr__(self):
-        return '<User %r>' % self.username
-
-
-
-db.create_all()
-
-
-@app.route("/")
-def hello():
-    return "Hello World!"
+if __name__ == '__main__':
+    app.run(host='0.0.0.0', port=3000)
