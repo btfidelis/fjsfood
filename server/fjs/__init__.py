@@ -1,8 +1,7 @@
 from flask import Flask
 from flask_sqlalchemy import SQLAlchemy
 from fjs.modules.auth.routes import bp as auth_routes
-
-db = SQLAlchemy()
+from fjs.orm import db
 
 def create_app(config=None):
     app = Flask(__name__)

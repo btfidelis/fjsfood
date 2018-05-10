@@ -9,6 +9,8 @@ def test():
 
 @bp.route('/user', methods=['GET'])
 def create_user():
-    return jsonify(User.query.all())
+    users = [sqla2dict(u) for u in User.query.all()]
+    print(users)
+    return jsonify(users)
 
 
