@@ -26,7 +26,7 @@ class App extends Component { //app nome do arquivo
   }
 }
 
-class DetailsScreen extends React.Component {
+export default class DetailsScreen extends React.Component {
   static navigationOptions = {
     title: 'Details',
   };
@@ -34,9 +34,13 @@ class DetailsScreen extends React.Component {
   render() {
     return (
       <View style={{ flex: 1, alignItems: 'center', justifyContent: 'center' }}>
-        <Text>Details Screen</Text>
+        <Text>Pedidos</Text>
         <Button
-          title="Go to Details... again"
+          title="Ler Código"
+          onPress={() => this.props.navigation.navigate('Home')}
+        />
+        <Button
+          title="Pesquisar Restaurantes"
           onPress={() => this.props.navigation.navigate('Home')}
         />
       </View>
@@ -63,10 +67,10 @@ const RootStack = createStackNavigator({
   initialRouteName: 'Home',
 })
 
-export default class Root extends Component { 
-  render() {
-    return (
-      <RootStack />
-    )
-  }
-}
+// export default class Root extends Component { 
+//   render() {
+//     return (
+//       <RootStack />
+//     )
+//   }
+// }
