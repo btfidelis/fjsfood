@@ -1,53 +1,61 @@
 import React, { Component } from 'react';
-import { 
-  StyleSheet, 
-  Text, 
-  View, 
-  Button } from 'react-native';
+import { AppRegistry, View, Image, StyleSheet, TextInput } from 'react-native';
 
-import { createStackNavigator } from 'react-navigation'
+const styles = StyleSheet.create({
+  container: {
+  flex: 1,
+  color: 'red',
+  backgroundColor: '#fff',
+  alignItems: 'center',
+  justifyContent: 'center',
+  },
+  });
 
-class App extends Component { //app nome do arquivo
-  static navigationOptions = {
-    title: 'App',
-  };
+export default class App extends Component {
+  constructor(props) {
+    super(props);
+    
+  } 
+  render() {
+    return (
+        <View style={styles.container}> 
+             <TextInput style = {{textAlign:'center', width:'100%', padding: 6, fontSize: 18, margin: 10, borderRadius: 4 }} placeholder="Usuario" onChange={this.textInputDidChange} />
+             <TextInput style = {{textAlign:'center', width:'100%', padding: 6, fontSize: 18, margin: 10, borderRadius: 4 }} secureTextEntry={true} placeholder="Senha" onChange={this.textInputDidChange}  />
+      </View>
+    );
+  }
+};
 
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+/* Codigo base abaixo
+import React, { Component } from 'react';
+import { StyleSheet, Text, View } from 'react-native';
+
+export default class App extends Component {
   render() {
     return (
       <View style={styles.container}>
-        <Text>teste12334!</Text>
-        <Text>kkkkkkkkkkk</Text>
-        <Button
-          title="Go to Details"
-          onPress={() => this.props.navigation.navigate('Details')}
-        />
+        <Text>Oi!</Text>
+        <Text></Text>
       </View>
     );
   }
 }
-
-export default class DetailsScreen extends React.Component {
-  static navigationOptions = {
-    title: 'Details',
-  };
-  
-  render() {
-    return (
-      <View style={{ flex: 1, alignItems: 'center', justifyContent: 'center' }}>
-        <Text>Pedidos</Text>
-        <Button
-          title="Ler Código"
-          onPress={() => this.props.navigation.navigate('Home')}
-        />
-        <Button
-          title="Pesquisar Restaurantes"
-          onPress={() => this.props.navigation.navigate('Home')}
-        />
-      </View>
-    );
-  }
-}
-
 
 const styles = StyleSheet.create({
   container: {
@@ -58,19 +66,4 @@ const styles = StyleSheet.create({
     justifyContent: 'center',
   },
 });
-
-const RootStack = createStackNavigator({
-  Home: App,
-  Details: DetailsScreen,
-},
-{
-  initialRouteName: 'Home',
-})
-
-// export default class Root extends Component { 
-//   render() {
-//     return (
-//       <RootStack />
-//     )
-//   }
-// }
+ */
