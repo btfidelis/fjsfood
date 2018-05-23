@@ -1,4 +1,6 @@
+
 import React, { Component } from 'react';
+
 import AppNavigation from './routes'
 
 import { COLOR, ThemeProvider } from 'react-native-material-ui'
@@ -26,3 +28,4 @@ export default class Root extends Component {
     )
   }
 }
+
