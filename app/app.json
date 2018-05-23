@@ -1,5 +1,11 @@
 {
   "expo": {
-    "sdkVersion": "26.0.0"
+    "sdkVersion": "26.0.0",
+    "android": {
+      "package": "br.com.unilasalle.fjsfood",
+      "config": {
+        "googleMaps": { "apiKey": "AIzaSyC41nxd23_zegqGSrLlS5PGzczv0l6Aq_w" }
+      }
+    }
   }
 }
