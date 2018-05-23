@@ -1,31 +1,50 @@
 import React, { Component } from 'react'
 import { StyleSheet, View, Text, Button } from 'react-native'
+import MapView from 'react-native-maps'
+import { ActionButton } from 'react-native-material-ui'
 
 const styles = StyleSheet.create({
   container: {
-    flex: 1,
-    color: 'red',
-    backgroundColor: '#fff',
+    position: 'absolute',
+    top: 0,
+    left: 0,
+    bottom: 0, 
+    right: 0, 
+    justifyContent: 'flex-end',
     alignItems: 'center',
-    justifyContent: 'center',
   },
+  map: {
+    position: 'absolute',
+    top: 0,
+    left: 0,
+    bottom: 0,
+    right: 0
+  }
 });
 
 export default class Home extends Component { //app nome do arquivo
-    static navigationOptions = {
-      title: 'App',
-    };
+  constructor(props) {
+    super(props)
+  }
 
-    render() {
-      return (
-        <View style={styles.container}>
-          <Text>teste12334!</Text>
-          <Text>kkkkkkkkkkk</Text>
-          <Button
-              title="Go to Details"
-              onPress={() => this.props.navigation.navigate('Details')}
-          />
-        </View>
-      );
-    }
+  static navigationOptions = {
+    title: 'App',
+  };
+
+  render() {
+    return (
+      <View style={styles.container}>
+        <MapView
+          style={styles.map}
+          initialRegion={{
+            latitude: 37.78825,
+            longitude: -122.4324,
+            latitudeDelta: 0.0922,
+            longitudeDelta: 0.0421,
+          }}
+        />
+        <ActionButton icon="camera" />
+      </View>
+    );
+  }
 }
