@@ -1,5 +1,5 @@
 import React, { Component } from 'react'
-import { StyleSheet, View, Text, FlatList, List, ListItem  } from 'react-native'
+import { Alert, TouchableHighlight, AppRegistry, StyleSheet, View, Text, FlatList, List, ListItem, Image, Button  } from 'react-native'
 
 const styles = StyleSheet.create({
   container: {
@@ -16,16 +16,17 @@ const styles = StyleSheet.create({
    
     // Setting up View inside content in Vertically center.
     justifyContent: 'center',
-    flex:1,
+    flex: 1,
     margin: 10
      
     },
 
   item: {
-    padding: 10,
+    padding: 20,
     fontSize: 14,
-    height: 44,
+    height: 100,
     display: 'flex',
+    flexDirection: 'row'
   },
 
 
@@ -42,32 +43,55 @@ export default class ListaRestaurante extends Component { //app nome do arquivo
     constructor(props)
   {
     super(props);
- 
+ //declaracao das variaveis
     this.state = { FlatListItems: [
 
-      {key: 'Nome', categoria: 'categoria', valor: '$$', dist:'12km'},
-      {key: 'Nome2', categoria: 'categoria2', valor: '$$', dist:'10km'},
+      {key: 'Nome', categoria: 'categoria', valor: '$$', dist:'12km', img:'http://zanottirefrigeracao.com.br/blog/wp-content/uploads/segmento-restaurante-ecomanda-705x296.jpg' },
+      {key: 'Nome2', categoria: 'categoria2', valor: '$$', dist:'10km', img:'http://www.restauranteskylab.com.br/wp-content/uploads/2016/06/restaurante-skylab-o-restaurante-capa.jpg'},
+      {key: 'Nome2', categoria: 'categoria2', valor: '$$', dist:'10km', img:'http://www.restauranteskylab.com.br/wp-content/uploads/2016/06/restaurante-skylab-o-restaurante-capa.jpg'},
+      {key: 'Nome2', categoria: 'categoria2', valor: '$$', dist:'10km', img:'http://www.restauranteskylab.com.br/wp-content/uploads/2016/06/restaurante-skylab-o-restaurante-capa.jpg'},
+      {key: 'Nome2', categoria: 'categoria2', valor: '$$', dist:'10km', img:'http://www.restauranteskylab.com.br/wp-content/uploads/2016/06/restaurante-skylab-o-restaurante-capa.jpg'},
+      {key: 'Nome2', categoria: 'categoria2', valor: '$$', dist:'10km', img:'http://www.restauranteskylab.com.br/wp-content/uploads/2016/06/restaurante-skylab-o-restaurante-capa.jpg'},
+      {key: 'Nome2', categoria: 'categoria2', valor: '$$', dist:'10km', img:'http://www.restauranteskylab.com.br/wp-content/uploads/2016/06/restaurante-skylab-o-restaurante-capa.jpg'},
+      {key: 'Nome2', categoria: 'categoria2', valor: '$$', dist:'10km', img:'http://www.restauranteskylab.com.br/wp-content/uploads/2016/06/restaurante-skylab-o-restaurante-capa.jpg'},
+      {key: 'Nome2', categoria: 'categoria2', valor: '$$', dist:'10km', img:'http://www.restauranteskylab.com.br/wp-content/uploads/2016/06/restaurante-skylab-o-restaurante-capa.jpg'},
+      {key: 'Nome2', categoria: 'categoria2', valor: '$$', dist:'10km', img:'http://www.restauranteskylab.com.br/wp-content/uploads/2016/06/restaurante-skylab-o-restaurante-capa.jpg'},
 
     ]}
   }
 
-
-
+ FlatListItemSeparator = () => {
+    return (
+      <View
+        style={{
+          height: 2,
+          width: "100%",
+          backgroundColor: "#FFC107",
+        }}
+      />
+    );
+  }
 
 
     render() {
       return (
       <View style={styles.MainContainer}>
           <FlatList
-              data={ this.state.FlatListItems }
-              renderItem={({item}) => 
-              <Text style={styles.item} > 
-              {item.key} 
-              <Text>{item.categoria} </Text>
-              <Text>{item.valor} </Text>
+            data = { this.state.FlatListItems }
+            ItemSeparatorComponent = {this.FlatListItemSeparator}
+            renderItem={({item}) => 
+            <TouchableHighlight onPress={() => alert(item.key)} >  
+              <View style={{flex:1, flexDirection: 'row', display: 'flex' }}>
+                <Image source = {{ uri: item.img/*uri: 'http://zanottirefrigeracao.com.br/blog/wp-content/uploads/segmento-restaurante-ecomanda-705x296.jpg'*/ }} style = {{width: 100, height: 70, marginTop: 20}}/>
+                <Text style={styles.item} > 
+                  {item.key+"\n"+item.categoria+ "\n"+item.valor + "\n"}
+                </Text> 
+              </View> 
+            </TouchableHighlight>
+            }
               
-              
-              </Text> }
+             
+             
              //<Text style={styles.item} > {item.categoria} </Text> 
                //<Text style={styles.item} > {item.valor} </Text>
                //<Text> style ={styles.item} > {item.dist} </Text>}
@@ -80,3 +104,5 @@ export default class ListaRestaurante extends Component { //app nome do arquivo
       );
     }
   }
+
+  //Scroll da tela
