@@ -80,7 +80,8 @@ export default class ListaRestaurante extends Component { //app nome do arquivo
             data = { this.state.FlatListItems }
             ItemSeparatorComponent = {this.FlatListItemSeparator}
             renderItem={({item}) => 
-            <TouchableHighlight onPress={() => alert(item.key)} >  
+            <TouchableHighlight onPress={() => alert(item.key)} >
+            {/**/}  
               <View style={{flex:1, flexDirection: 'row', display: 'flex' }}>
                 <Image source = {{ uri: item.img/*uri: 'http://zanottirefrigeracao.com.br/blog/wp-content/uploads/segmento-restaurante-ecomanda-705x296.jpg'*/ }} style = {{width: 100, height: 70, marginTop: 20}}/>
                 <Text style={styles.item} > 
