@@ -9,6 +9,7 @@ import MenuRestaurante from './view/MenuRestaurante'
 
 import { createStackNavigator } from 'react-navigation'
 
+import { colors } from './utils/styles'
 
 const AppNavigator = createStackNavigator({
   Home: Home,
@@ -24,7 +25,7 @@ const AppNavigator = createStackNavigator({
   initialRouteName: 'Carrinho',
   navigationOptions: {
     headerStyle: {
-      backgroundColor: '#f4511e',
+      backgroundColor: colors.darkPrimaryColor,
     },
     headerTintColor: '#fff',
     headerTitleStyle: {

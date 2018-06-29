@@ -1,5 +1,9 @@
 import React, { Component } from 'react';
-import { AppRegistry, View, Image, StyleSheet, TextInput, Button, Text, TouchableHighlight } from 'react-native';
+import { 
+    View,
+    StyleSheet,
+    Button, 
+} from 'react-native';
 
 
 const styles = StyleSheet.create({
