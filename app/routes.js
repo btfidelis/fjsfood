@@ -1,6 +1,8 @@
 import Home from './view/Home'
 import DetailsScreen from './view/DetailsScreen'
 import ListaRestaurante from './view/ListaRestaurante'
+import OpcaoPagamento from './view/OpcaoPagamento'
+import Carrinho from './view/Carrinho'
 //import QRCodeScanner from './view/QRCodeScanner'
 import Login from './view/Login'
 import MenuRestaurante from './view/MenuRestaurante'
@@ -15,9 +17,11 @@ const AppNavigator = createStackNavigator({
   ListaRestaurante: ListaRestaurante,
   Login: Login,
   MenuRestaurante: MenuRestaurante,
+  OpcaoPagamento: OpcaoPagamento,
+  Carrinho: Carrinho,
 },
 {
-  initialRouteName: 'ListaRestaurante',
+  initialRouteName: 'Carrinho',
   navigationOptions: {
     headerStyle: {
       backgroundColor: '#f4511e',

@@ -7,17 +7,16 @@ const styles = StyleSheet.create({
         display: 'flex',
         flexDirection: 'column',
         color: 'red',
-        height: '30%',
+        height: '23%',
         alignItems: 'center',
         justifyContent: 'space-between',
         marginTop: 180,
     },
 
-    buttonStyle: {
+    /*buttonStyle: {
         flex: 1,
-        marginTop: 80
- 
-   },
+        marginTop: 8,
+    },*/
 
 });
 
@@ -58,8 +57,6 @@ export default class OpcaoPagamento extends Component { //app nome do arquivo
                     />
                
             </View>
-
-
 
         );
 
