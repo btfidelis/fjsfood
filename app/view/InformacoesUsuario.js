@@ -50,7 +50,7 @@ import {
       
       
       
-      export default class ListaRestaurante extends Component { //app nome do arquivo
+      export default class InformacoesUsuario extends Component { //app nome do arquivo
           static navigationOptions = {
             title: 'App',
           };
