@@ -7,6 +7,7 @@ import Carrinho from './view/Carrinho'
 import Login from './view/Login'
 import MenuRestaurante from './view/MenuRestaurante'
 import ConfirmacaoPagamento from './view/ConfirmacaoPagamento'
+import InformacoesUsuario from './view/InformacoesUsuario'
 
 import { createStackNavigator } from 'react-navigation'
 
@@ -22,9 +23,10 @@ const AppNavigator = createStackNavigator({
   OpcaoPagamento: OpcaoPagamento,
   Carrinho: Carrinho,
   ConfirmacaoPagamento: ConfirmacaoPagamento,
+  InformacoesUsuario: InformacoesUsuario,
 },
 {
-  initialRouteName: 'ConfirmacaoPagamento',
+  initialRouteName: 'InformacoesUsuario',
   navigationOptions: {
     headerStyle: {
       backgroundColor: colors.darkPrimaryColor,
