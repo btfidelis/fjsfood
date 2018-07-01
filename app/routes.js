@@ -28,7 +28,7 @@ const AppNavigator = createStackNavigator({
   Info: Info,
 },
 {
-  initialRouteName: 'Info',
+  initialRouteName: 'Carrinho',
   navigationOptions: {
     headerStyle: {
       backgroundColor: colors.darkPrimaryColor,

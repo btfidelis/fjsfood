@@ -63,11 +63,13 @@ import {
       
             {
                 opcao: 'Último Pagamento', 
-                icone: 'http://i67.tinypic.com/9pqkom_th.png', 
+                icone: 'http://i67.tinypic.com/9pqkom_th.png',
+                link: 'ConfirmacaoPagamento'
             },
             {
                 opcao: 'Configurações',
-                icone: 'http://oi64.tinypic.com/23hwv42.jpg', 
+                icone: 'http://oi64.tinypic.com/23hwv42.jpg',
+
             },
             {
                 opcao: 'Ajuda ',
@@ -97,7 +99,14 @@ import {
                   data = { this.state.FlatListItems }
                   ItemSeparatorComponent = {this.FlatListItemSeparator}
                   renderItem={({item}) => 
-                  <TouchableHighlight onPress={() => alert(item.opcao) } underlayColor="white" >
+                  <TouchableHighlight onPress={() => {
+                     if(item.link){
+                      this.props.navigation.navigate(item.link)
+                      }
+                    else{
+                      alert(item.opcao)
+                    }
+                  }} underlayColor="white" > 
                   {/**/}  
                     <View style={{flex:1, flexDirection: 'row', display: 'flex' }}>
                       <Image source = {{ uri: item.icone/*uri: 'http://zanottirefrigeracao.com.br/blog/wp-content/uploads/segmento-restaurante-ecomanda-705x296.jpg'*/ }} style = {{width: 30, height: 30, marginTop: 20}}/>
