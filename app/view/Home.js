@@ -68,8 +68,8 @@ export default class Home extends Component { //app nome do arquivo
           initialRegion={{
             latitude: this.state.location.coords.latitude,
             longitude: this.state.location.coords.longitude,
-            latitudeDelta: 0,
-            longitudeDelta: 0,
+            latitudeDelta: 0.0922,
+            longitudeDelta: 0.0421,
           }}
         />
         <ActionButton icon="camera" onPress={() => this.props.navigation.navigate('QRCodeScanner')} />

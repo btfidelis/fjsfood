@@ -103,7 +103,7 @@ class Menu extends Component {
   }
 
   render() {
-    
+    console.log(this.props.navigation.getParam('restaurant'))
     return (
       <View style={{ flex: 1, width: '100%' }}>
         <FlatList 
@@ -194,7 +194,7 @@ export default createMaterialTopTabNavigator(
     Info: Info
   },
   {
-
+    initialRouteName: 'Menu',
     tabBarOptions: {
       activeTintColor: colors.lightPrimaryColor,
       inactiveTintColor: 'white',

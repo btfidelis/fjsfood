@@ -10,16 +10,22 @@ import ConfirmacaoPagamento from './view/ConfirmacaoPagamento'
 import InformacoesUsuario from './view/InformacoesUsuario'
 import Info from './view/Info'
 
-import { createStackNavigator } from 'react-navigation'
+import AuthLoadingScreen from './components/AuthLoading'
+
+import { createStackNavigator, createSwitchNavigator } from 'react-navigation'
 
 import { colors } from './utils/styles'
 
-const AppNavigator = createStackNavigator({
+const AuthStack = createStackNavigator({
+  Login: Login
+})
+
+
+const AppStack = createStackNavigator({
   Home: Home,
   QRCodeScanner: QRCodeScanner,
   Details: DetailsScreen,
   ListaRestaurante: ListaRestaurante,
-  Login: Login,
   MenuRestaurante: MenuRestaurante,
   OpcaoPagamento: OpcaoPagamento,
   Carrinho: Carrinho,
@@ -41,4 +47,13 @@ const AppNavigator = createStackNavigator({
 })
 
 
-export default AppNavigator
+export default createSwitchNavigator(
+  {
+    AuthLoading: AuthLoadingScreen,
+    App: AppStack,
+    Auth: AuthStack
+  },
+  {
+    initialRouteName: 'AuthLoading'
+  }
+)

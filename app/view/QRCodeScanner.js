@@ -32,8 +32,7 @@ export default class QRCodeScanner extends Component {
   _handleBarCodeRead = result => {
     if (result.data !== this.state.lastScannedUrl) {
       LayoutAnimation.spring();
-      this.props.navigation.navigate('MenuRestaurante', { restaurant: result.data })
-      //this.setState({ lastScannedUrl: result.data });
+      this.props.navigation.navigate('Carrinho', { restaurant: result.data })
     }
   };
 
