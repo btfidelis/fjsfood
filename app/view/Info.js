@@ -26,17 +26,18 @@ import {
         textoSecundario: {
 
             //alignItems: 'left',
-            marginTop: 10,
-            
+            //marginTop: 2,
             //flexDirection: 'column',
-            padding:15,
-            justifyContent: 'space-between',
+            paddingLeft:15,
+            //textAlign: 'left',
+            //justifyContent: 'space-between',
           },
 
         textoTitulo: {
             fontWeight: 'bold',
             marginTop: 10,
-            padding:15,
+            marginBottom: 10,
+            paddingLeft:15,
         },
     
     });
@@ -58,7 +59,7 @@ import {
                     tituloFormas: 'Formas de Pagamento',
                     informacaoTipos:  'À vista',
                     informacaoOpcoes: 'Visa, Master, BanriCompras',
-                    informcaoTiposS:  'A prazo',
+                    informacaoTiposS:  'A prazo',
                     informacaoOpcoesS: 'Visa, Master, BanriCompras'
                 };
                
@@ -78,13 +79,23 @@ import {
                     </Text>
 
                     <Text style ={styles.textoTitulo}>
-                    {this.state.titulo}{'\n'}{'\n'}
-                  
+                     {this.state.titulo}
                     </Text>   
 
-                     <Text style ={styles.container}>
-                        
+                     <Text style ={styles.textoSecundario}>
+                        {this.state.informacao}   
                     </Text> 
+
+                    <Text style ={styles.textoTitulo}>
+                        {this.state.tituloFormas}
+                    </Text>
+
+                    <Text style ={styles.textoSecundario}>
+                        {this.state.informacaoTipos}{"\n"}
+                        {this.state.informacaoOpcoes}{"\n"}{"\n"}
+                        {this.state.informacaoTiposS}{"\n"}
+                        {this.state.informacaoOpcoesS}
+                    </Text>
 
                 </View>
 
