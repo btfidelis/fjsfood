@@ -45,7 +45,7 @@ import {
 
     export default class Info extends Component { //app nome do arquivo
         static navigationOptions = {
-          title: 'App',
+          title: 'Info',
         };
     
         constructor(props)

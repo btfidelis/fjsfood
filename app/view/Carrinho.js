@@ -5,12 +5,9 @@ import {
   Text, 
   FlatList, 
   Image,
-<<<<<<< HEAD
   TouchableHighlight,
   Button } from 'react-native';
-=======
-  TouchableHighlight } from 'react-native';
->>>>>>> 4d88291909c4dce4ad6bfc962577eec5b9c338f1
+import Info from './Info'
 import { createMaterialTopTabNavigator } from 'react-navigation'
 import { colors } from './../utils/styles'
 
@@ -83,15 +80,7 @@ const styleList = StyleSheet.create({
 })
 
 
-class Info extends Component {
-  render() {
-    return (
-      <View style={{ flex: 1, justifyContent: 'center', alignItems: 'center' }}>
-        <Text>Home!</Text>
-      </View>
-    );
-  }
-}
+
 
 class Menu extends Component {
   
@@ -131,11 +120,8 @@ class Menu extends Component {
     
     return (
       <View style={{ flex: 1, width: '100%' }}>
-<<<<<<< HEAD
 
       
-=======
->>>>>>> 4d88291909c4dce4ad6bfc962577eec5b9c338f1
         <FlatList 
           data={this.state.menu || []}
           ItemSeparatorComponent={() => 
@@ -167,10 +153,7 @@ class Menu extends Component {
             )
           }}
         />
-<<<<<<< HEAD
        
-=======
->>>>>>> 4d88291909c4dce4ad6bfc962577eec5b9c338f1
       </View>
     );
   }
@@ -186,13 +169,8 @@ class Carrinho extends Component { //app nome do arquivo
       //declaracao das variaveis
       this.state = { 
         FlatListItems: [ 
-<<<<<<< HEAD
           { key:'abc1', pedido: 'Pedido Numero 1', preco: '$$', quantidade: '2x' },
           { key:'abc2', pedido: 'Pedido Numero 2', preco: '$$', quantidade: '1x' },
-=======
-          { key:'abc1', pedido: 'Pedido Numero 1', preco: '$$', quantidade: '2' },
-          { key:'abc2', pedido: 'Pedido Numero 2', preco: '$$', quantidade: '1' },
->>>>>>> 4d88291909c4dce4ad6bfc962577eec5b9c338f1
         ]
       }
     }
@@ -213,14 +191,10 @@ render() {
 
         <FlatList
           data = { this.state.FlatListItems }
-          renderItem={({item}) => 
-          
+          renderItem={({item}) =>      
               <Text style={styles.flat} > 
                 {item.pedido+"       "+item.preco+ "\n"+item.quantidade + "\n"}
-              </Text>
-
-              
-          
+              </Text>         
           }
         />
         <Text style={{paddingLeft: 50, marginBottom: 40}}>
