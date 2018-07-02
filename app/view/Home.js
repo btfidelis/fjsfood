@@ -1,7 +1,8 @@
 import React, { Component } from 'react'
-import { StyleSheet, View, Text, Button } from 'react-native'
+import { StyleSheet, View } from 'react-native'
 import MapView from 'react-native-maps'
 import { ActionButton } from 'react-native-material-ui'
+import { Permissions, Location } from 'expo'
 
 const styles = StyleSheet.create({
   container: {
@@ -25,25 +26,53 @@ const styles = StyleSheet.create({
 export default class Home extends Component { //app nome do arquivo
   constructor(props) {
     super(props)
+    this.state = {
+      location: { 
+        coords: {
+          latitude: 37.78825,
+          longitude: -122,
+
+        } 
+      }
+    }
   }
 
   static navigationOptions = {
     title: 'App',
   };
 
+  componentWillMount() {
+    this.getLocations()
+  }
+
+  async getLocations() {
+    const { status } = await Permissions.askAsync(Permissions.LOCATION)
+    
+    if (status !== 'granted') {
+      alert('Esse app só funciona com permissao')
+    }
+
+    const location = await Location.getCurrentPositionAsync({})
+
+    this.setState(() => ({
+      location
+    }))
+  }
+
   render() {
+    console.log(this.state.location)
     return (
       <View style={styles.container}>
         <MapView
           style={styles.map}
           initialRegion={{
-            latitude: 37.78825,
-            longitude: -122.4324,
-            latitudeDelta: 0.0922,
-            longitudeDelta: 0.0421,
+            latitude: this.state.location.coords.latitude,
+            longitude: this.state.location.coords.longitude,
+            latitudeDelta: 0,
+            longitudeDelta: 0,
           }}
         />
-        <ActionButton icon="camera" />
+        <ActionButton icon="camera" onPress={() => this.props.navigation.navigate('QRCodeScanner')} />
       </View>
     );
   }

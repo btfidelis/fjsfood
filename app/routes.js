@@ -1,36 +1,48 @@
 import Home from './view/Home'
 import DetailsScreen from './view/DetailsScreen'
 import ListaRestaurante from './view/ListaRestaurante'
-//import QRCodeScanner from './view/QRCodeScanner'
+import QRCodeScanner from './view/QRCodeScanner'
+import OpcaoPagamento from './view/OpcaoPagamento'
+import Carrinho from './view/Carrinho'
 import Login from './view/Login'
 import MenuRestaurante from './view/MenuRestaurante'
-import MiniCurso from './view/MiniCurso'
 import Avaliacao from './view/Avaliacao'
 import Loading from './view/Loading'
 //import Carrinho from './view/Carrinho'
+import ConfirmacaoPagamento from './view/ConfirmacaoPagamento'
+import InformacoesUsuario from './view/InformacoesUsuario'
+import Info from './view/Info'
 
 import { createStackNavigator } from 'react-navigation'
 
+import { colors } from './utils/styles'
 
 const AppNavigator = createStackNavigator({
   Home: Home,
- // QRCodeScanner: QRCodeScanner,
+  QRCodeScanner: QRCodeScanner,
   Details: DetailsScreen,
   ListaRestaurante: ListaRestaurante,
   Login: Login,
   MenuRestaurante: MenuRestaurante,
-  MiniCurso:MiniCurso,
   Avaliacao: Avaliacao,
-  Loading: Loading,
-  //Carrinho: Carrinho,
+  
+
   
   
 },
 {
   initialRouteName: 'Avaliacao',
+  OpcaoPagamento: OpcaoPagamento,
+  Carrinho: Carrinho,
+  ConfirmacaoPagamento: ConfirmacaoPagamento,
+  InformacoesUsuario: InformacoesUsuario,
+  Info: Info,
+},
+{
+  initialRouteName: 'Carrinho',
   navigationOptions: {
     headerStyle: {
-      backgroundColor: '#f4511e',
+      backgroundColor: colors.darkPrimaryColor,
     },
     headerTintColor: '#fff',
     headerTitleStyle: {
