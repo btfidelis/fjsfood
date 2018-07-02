@@ -8,6 +8,7 @@ import {
   TouchableHighlight,
   Button } from 'react-native';
 import Info from './Info'
+import { formataPreco } from './../utils/helpers'
 import { createMaterialTopTabNavigator } from 'react-navigation'
 import { colors } from './../utils/styles'
 
@@ -169,8 +170,8 @@ class Carrinho extends Component { //app nome do arquivo
       //declaracao das variaveis
       this.state = { 
         FlatListItems: [ 
-          { key:'abc1', pedido: 'Pedido Numero 1', preco: '$$', quantidade: '2x' },
-          { key:'abc2', pedido: 'Pedido Numero 2', preco: '$$', quantidade: '1x' },
+          { key:'abc1', pedido: 'Pedido Numero 1', preco: 7, quantidade: 2 },
+          { key:'abc2', pedido: 'Pedido Numero 2', preco: 4, quantidade: 1 },
         ]
       }
     }
@@ -193,12 +194,14 @@ render() {
           data = { this.state.FlatListItems }
           renderItem={({item}) =>      
               <Text style={styles.flat} > 
-                {item.pedido+"       "+item.preco+ "\n"+item.quantidade + "\n"}
+                {item.pedido+"       R$ "+formataPreco(item.preco)+ "\n"+item.quantidade + "x\n"}
               </Text>         
           }
         />
         <Text style={{paddingLeft: 50, marginBottom: 40}}>
-          Total:
+          Total: R$ {formataPreco(this.state.FlatListItems.reduce((ac, valorAtual)=> {
+            return ac + (valorAtual.preco * valorAtual.quantidade)
+          },0))}
         </Text>
 
         <Button  style={styles.ButtonStyle}
