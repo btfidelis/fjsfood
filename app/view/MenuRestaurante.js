@@ -13,14 +13,15 @@ const styles = StyleSheet.create({
 });
 
 export default class Login extends Component {
-    static navigationOptions = { //Colocar esse trecho sempre para dar "cor" ao app
-        title: 'App',
-      };
-    constructor(props) {
+  static navigationOptions = { //Colocar esse trecho sempre para dar "cor" ao app
+    title: 'App',
+  };
+    
+  constructor(props) {
     super(props);
     this.state = {
-        bodyText: 'Esqueci meu usuario/senha'
-      };
+      bodyText: 'Esqueci meu usuario/senha'
+    };
   } 
   
   onPress = () => { //Defini o que acontece quando o texto clicável é clicado
@@ -31,9 +32,7 @@ export default class Login extends Component {
 
   render() {
     return (
-        <View style={styles.container}> 
-             Oi
-      </View>
+      <View style={styles.container}>Oi</View>
     );
   }
 }; // adicionar  fontFamily:'roboto'
