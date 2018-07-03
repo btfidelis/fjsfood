@@ -12,6 +12,7 @@ import Loading from './view/Loading'
 import ConfirmacaoPagamento from './view/ConfirmacaoPagamento'
 import InformacoesUsuario from './view/InformacoesUsuario'
 import Info from './view/Info'
+import PagamentoCartao from './view/PagamentoCartao'
 
 import { createStackNavigator } from 'react-navigation'
 
@@ -25,13 +26,14 @@ const AppNavigator = createStackNavigator({
   Login: Login,
   MenuRestaurante: MenuRestaurante,
   Avaliacao: Avaliacao,
+  PagamentoCartao: PagamentoCartao,
   
 
   
   
 },
 {
-  initialRouteName: 'Avaliacao',
+  initialRouteName: 'PagamentoCartao',
   OpcaoPagamento: OpcaoPagamento,
   Carrinho: Carrinho,
   ConfirmacaoPagamento: ConfirmacaoPagamento,
