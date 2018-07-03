@@ -5,7 +5,10 @@ import {
   Text, 
   FlatList, 
   Image,
-  TouchableHighlight } from 'react-native';
+  TouchableHighlight,
+  Button } from 'react-native';
+import Info from './Info'
+import { formataPreco } from './../utils/helpers'
 import { createMaterialTopTabNavigator } from 'react-navigation'
 import { colors } from './../utils/styles'
 
@@ -17,6 +20,15 @@ const styles = StyleSheet.create({
         marginTop: 10,
         alignItems: 'center',
         justifyContent: 'space-around',
+        paddingLeft: 15,
+    },
+
+    tituloRestaurante:{
+        paddingLeft:20,
+        fontSize: 24,
+       // marginTop:10,
+        padding:10,
+        marginTop:20,
     },
 
     CorMenu:{
@@ -30,11 +42,22 @@ const styles = StyleSheet.create({
         borderBottomWidth: 3,
     },
 
+    ButtonStyle: {
+      display: 'flex',
+      //flexDirection: 'column',
+      //height: '23%',
+      alignItems: 'center',
+      //justifyContent: 'space-between',
+      marginTop: 180,
+      
+  },
+
     flat:{
-        marginTop: 10,display: 'flex',
+        marginTop: 10,
+        display: 'flex',
         flexDirection: 'column',
         color: 'black',
-        marginTop: 10,
+        paddingLeft: 20,
         alignItems: 'center',
         justifyContent: 'space-around',
     },
@@ -58,15 +81,7 @@ const styleList = StyleSheet.create({
 })
 
 
-class Info extends Component {
-  render() {
-    return (
-      <View style={{ flex: 1, justifyContent: 'center', alignItems: 'center' }}>
-        <Text>Home!</Text>
-      </View>
-    );
-  }
-}
+
 
 class Menu extends Component {
   
@@ -106,6 +121,8 @@ class Menu extends Component {
     console.log('NavState: ', this.props.navigation.state)
     return (
       <View style={{ flex: 1, width: '100%' }}>
+
+      
         <FlatList 
           data={this.state.menu || []}
           ItemSeparatorComponent={() => 
@@ -137,6 +154,7 @@ class Menu extends Component {
             )
           }}
         />
+       
       </View>
     );
   }
@@ -146,15 +164,16 @@ class Menu extends Component {
 
 
 class Carrinho extends Component { //app nome do arquivo
-  constructor(props) {
-    super(props);
+    constructor(props) {
+      super(props);
 
-    //declaracao das variaveis
-    this.state = { 
-      FlatListItems: [ 
-        { key:'abc1', pedido: 'Pedido Numero 1', preco: '$$', quantidade: '2' },
-        { key:'abc2', pedido: 'Pedido Numero 2', preco: '$$', quantidade: '1' },
-      ]
+      //declaracao das variaveis
+      this.state = { 
+        FlatListItems: [ 
+          { key:'abc1', pedido: 'Pedido Numero 1', preco: 7, quantidade: 2 },
+          { key:'abc2', pedido: 'Pedido Numero 2', preco: 4, quantidade: 1 },
+        ]
+      }
     }
   }
 
@@ -167,18 +186,36 @@ class Carrinho extends Component { //app nome do arquivo
 
   render() {
     return (
-      <View style={styles.container}>
+      <View>
+        <Text style={styles.tituloRestaurante}>
+          Nome Restaurante
+        </Text>
 
         <FlatList
           data = { this.state.FlatListItems }
-          renderItem={({item}) => 
-          
+          renderItem={({item}) =>      
               <Text style={styles.flat} > 
-                {item.pedido+"\n"+item.preco+ "\n"+item.quantidade + "\n"}
-              </Text>
-          
+                {item.pedido+"       R$ "+formataPreco(item.preco)+ "\n"+item.quantidade + "x\n"}
+              </Text>         
           }
         />
+        <Text style={{paddingLeft: 50, marginBottom: 40}}>
+          Total: R$ {formataPreco(this.state.FlatListItems.reduce((ac, valorAtual)=> {
+            return ac + (valorAtual.preco * valorAtual.quantidade)
+          },0))}
+        </Text>
+
+        <Button  style={styles.ButtonStyle}
+                onPress={() => this.props.navigation.navigate('OpcaoPagamento')}
+                title=" Efetuar Pagamento "
+                color="#FFC107"
+                accessibilityLabel="Learn more about this purple button"
+              />
+
+
+
+
+
       </View>
     )
   }
