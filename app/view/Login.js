@@ -1,4 +1,7 @@
 import React, { Component } from 'react';
+import Spinner from 'react-native-loading-spinner-overlay';
+
+
 import { 
   View, 
   StyleSheet,
@@ -8,6 +11,7 @@ import {
   TouchableHighlight,
   AsyncStorage
 } from 'react-native';
+import { colors } from '../utils/styles';
 
 const styles = StyleSheet.create({
     container: {
@@ -33,6 +37,7 @@ export default class Login extends Component {
   } 
   
   onPress = async () => { //Defini o que acontece quando o texto clicável é clicado
+    this.setState(() => ({ loading: true }))
     await AsyncStorage.setItem('userToken', 'abc')
     
     this.props.navigation.navigate('App') // Mudar a variavel 'Home' para definir para ir onde ir para mudar o login/senha
@@ -40,7 +45,8 @@ export default class Login extends Component {
 
   render() {
     return (
-      <View style={styles.container}> 
+      <View style={styles.container}>
+        <Spinner visible={this.state.loading} textContent={"Carregando..."} textStyle={colors.textPrimaryColor} />
         <TextInput style = {{textAlign:'left', width:'70%', padding: 6, fontSize: 18, margin: 10, borderRadius: 4 }} placeholder="Usuario" onChange={this.textInputDidChange} />
         <TextInput style = {{textAlign:'left', width:'70%', padding: 6, fontSize: 18, margin: 10, borderRadius: 4 }} secureTextEntry={true} placeholder="Senha" onChange={this.textInputDidChange} />
         <Button style={styles.buttonStyle}

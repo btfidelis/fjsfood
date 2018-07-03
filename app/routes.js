@@ -34,7 +34,7 @@ const AppStack = createStackNavigator({
   Info: Info,
 },
 {
-  initialRouteName: 'Carrinho',
+  initialRouteName: 'Home',
   navigationOptions: {
     headerStyle: {
       backgroundColor: colors.darkPrimaryColor,
@@ -54,6 +54,6 @@ export default createSwitchNavigator(
     Auth: AuthStack
   },
   {
-    initialRouteName: 'AuthLoading'
+    initialRouteName: 'Auth'
   }
 )

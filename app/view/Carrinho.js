@@ -77,8 +77,8 @@ class Menu extends Component {
   componentWillMount() {
     this.setState(() => ({
       menu: [
-        { key: 'Nome2', categoria: 'categoria2', valor: '$$', dist: '10km', img: 'http://www.restauranteskylab.com.br/wp-content/uploads/2016/06/restaurante-skylab-o-restaurante-capa.jpg', qtn: 0 },
-        { key: 'Nome3', categoria: 'categoria2', valor: '$$', dist: '10km', img: 'http://www.restauranteskylab.com.br/wp-content/uploads/2016/06/restaurante-skylab-o-restaurante-capa.jpg', qtn: 0 },
+        { key: 'Coca-Cola Lata', categoria: 'Bebida', valor: 4, img: 'http://www.restauranteskylab.com.br/wp-content/uploads/2016/06/restaurante-skylab-o-restaurante-capa.jpg', qtn: 0 },
+        { key: 'Pastel Forno', categoria: 'Food', valor: 5, img: 'http://www.restauranteskylab.com.br/wp-content/uploads/2016/06/restaurante-skylab-o-restaurante-capa.jpg', qtn: 0 },
       ]
     }))
   }
@@ -103,7 +103,7 @@ class Menu extends Component {
   }
 
   render() {
-    console.log(this.props.navigation.getParam('restaurant'))
+    console.log('NavState: ', this.props.navigation.state)
     return (
       <View style={{ flex: 1, width: '100%' }}>
         <FlatList 
@@ -146,26 +146,26 @@ class Menu extends Component {
 
 
 class Carrinho extends Component { //app nome do arquivo
-    constructor(props) {
-      super(props);
+  constructor(props) {
+    super(props);
 
-      //declaracao das variaveis
-      this.state = { 
-        FlatListItems: [ 
-          { key:'abc1', pedido: 'Pedido Numero 1', preco: '$$', quantidade: '2' },
-          { key:'abc2', pedido: 'Pedido Numero 2', preco: '$$', quantidade: '1' },
-        ]
-      }
+    //declaracao das variaveis
+    this.state = { 
+      FlatListItems: [ 
+        { key:'abc1', pedido: 'Pedido Numero 1', preco: '$$', quantidade: '2' },
+        { key:'abc2', pedido: 'Pedido Numero 2', preco: '$$', quantidade: '1' },
+      ]
     }
+  }
 
   
-    static navigationOptions = {
-      title: 'Carrinho',
-    };
+  static navigationOptions = {
+    title: 'Carrinho',
+  };
 
 
 
-render() {
+  render() {
     return (
       <View style={styles.container}>
 
@@ -181,10 +181,9 @@ render() {
         />
       </View>
     )
+  }
 
 }
-
-};
 
 
 export default createMaterialTopTabNavigator(
