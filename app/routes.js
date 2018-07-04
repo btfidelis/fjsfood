@@ -31,13 +31,6 @@ const AppStack = createStackNavigator({
   ListaRestaurante: ListaRestaurante,
   MenuRestaurante: MenuRestaurante,
   Avaliacao: Avaliacao,
-  
-
-  
-  
-},
-{
-  initialRouteName: 'Avaliacao',
   OpcaoPagamento: OpcaoPagamento,
   Carrinho: Carrinho,
   ConfirmacaoPagamento: ConfirmacaoPagamento,
@@ -45,7 +38,7 @@ const AppStack = createStackNavigator({
   Info: Info,
 },
 {
-  initialRouteName: 'Home',
+  initialRouteName: 'Carrinho',
   navigationOptions: {
     headerStyle: {
       backgroundColor: colors.darkPrimaryColor,
@@ -65,6 +58,6 @@ export default createSwitchNavigator(
     Auth: AuthStack
   },
   {
-    initialRouteName: 'Auth'
+    initialRouteName: 'AuthLoading'
   }
 )

@@ -16,7 +16,6 @@ const styles = StyleSheet.create({
     container: {
         display: 'flex',
         flexDirection: 'row',
-        //color: '#FFC107',
         marginTop: 10,
         alignItems: 'center',
         justifyContent: 'space-around',
@@ -80,7 +79,7 @@ const styleList = StyleSheet.create({
   }
 })
 
-
+var contentsCarrinho = []
 
 
 class Menu extends Component {
@@ -92,8 +91,8 @@ class Menu extends Component {
   componentWillMount() {
     this.setState(() => ({
       menu: [
-        { key: 'Coca-Cola Lata', categoria: 'Bebida', valor: 4, img: 'http://www.restauranteskylab.com.br/wp-content/uploads/2016/06/restaurante-skylab-o-restaurante-capa.jpg', qtn: 0 },
-        { key: 'Pastel Forno', categoria: 'Food', valor: 5, img: 'http://www.restauranteskylab.com.br/wp-content/uploads/2016/06/restaurante-skylab-o-restaurante-capa.jpg', qtn: 0 },
+        { key: 'a123', name: 'Coca-Cola Lata', categoria: 'Bebida', valor: 4, img: 'http://www.restauranteskylab.com.br/wp-content/uploads/2016/06/restaurante-skylab-o-restaurante-capa.jpg', qtn: 0 },
+        { key: 'b246@', name: 'Pastel Forno', categoria: 'Food', valor: 5, img: 'http://www.restauranteskylab.com.br/wp-content/uploads/2016/06/restaurante-skylab-o-restaurante-capa.jpg', qtn: 0 },
       ]
     }))
   }
@@ -114,11 +113,11 @@ class Menu extends Component {
 
       return x
     })
+    contentsCarrinho = items
     this.setState({ menu: items })
   }
 
   render() {
-    console.log('NavState: ', this.props.navigation.state)
     return (
       <View style={{ flex: 1, width: '100%' }}>
 
@@ -141,7 +140,7 @@ class Menu extends Component {
               <View style={styleList.list}>
                 <Image source={{ uri: item.img }} style={{ flex: 2, width: 100, height: 100 }} />
                 <Text style={{ flex:2, marginLeft: 5, }}>
-                  {item.key + "\n" + item.categoria + "\n" + item.valor + "\n"}
+                  {item.name + "\n" + item.categoria + "\n" + item.valor + "\n"}
                 </Text>
                 <TouchableHighlight style={styleList.cartBtn} onPress={() => this.setItemQtn(item.key, -1)} >
                   <Text style={{ flex: 1, fontSize: 30, marginLeft: 16  }} >-</Text>
@@ -164,19 +163,30 @@ class Menu extends Component {
 
 
 class Carrinho extends Component { //app nome do arquivo
-    constructor(props) {
-      super(props);
+  constructor(props) {
+    super(props);
 
-      //declaracao das variaveis
-      this.state = { 
-        FlatListItems: [ 
-          { key:'abc1', pedido: 'Pedido Numero 1', preco: 7, quantidade: 2 },
-          { key:'abc2', pedido: 'Pedido Numero 2', preco: 4, quantidade: 1 },
-        ]
-      }
+    //declaracao das variaveis
+    this.state = { 
+      FlatListItems: [ 
+        { key: 'abc1', pedido: 'Pedido Numero 1', preco: 7, qtn: 2 },
+        { key: 'abc2', pedido: 'Pedido Numero 2', preco: 4, qtn: 1 },
+      ]
     }
-  }
 
+  }
+  
+
+  componentDidMount() {
+
+    const update = () => { 
+      this.setState({  
+        FlatListItems: contentsCarrinho.filter(x => x.qtn > 0)
+      }) 
+    }
+
+    this.props.navigation.addListener('willFocus', update.bind(this));
+  }
   
   static navigationOptions = {
     title: 'Carrinho',
@@ -188,29 +198,30 @@ class Carrinho extends Component { //app nome do arquivo
     return (
       <View>
         <Text style={styles.tituloRestaurante}>
-          Nome Restaurante
+          Menta Café
         </Text>
 
         <FlatList
           data = { this.state.FlatListItems }
           renderItem={({item}) =>      
-              <Text style={styles.flat} > 
-                {item.pedido+"       R$ "+formataPreco(item.preco)+ "\n"+item.quantidade + "x\n"}
-              </Text>         
+            <Text style={styles.flat}>
+              {item.name+"       R$ "+formataPreco(item.valor || '')+ "\n"+item.qtn + "x\n"}
+            </Text>         
           }
         />
-        <Text style={{paddingLeft: 50, marginBottom: 40}}>
+        <Text style={{paddingLeft: 40, marginBottom: 40, marginTop: 20, fontSize: 16}}>
           Total: R$ {formataPreco(this.state.FlatListItems.reduce((ac, valorAtual)=> {
-            return ac + (valorAtual.preco * valorAtual.quantidade)
+            return ac + (valorAtual.valor * valorAtual.qtn)
           },0))}
         </Text>
 
-        <Button  style={styles.ButtonStyle}
-                onPress={() => this.props.navigation.navigate('OpcaoPagamento')}
-                title=" Efetuar Pagamento "
-                color="#FFC107"
-                accessibilityLabel="Learn more about this purple button"
-              />
+        <Button  
+          style={styles.ButtonStyle}
+          onPress={() => this.props.navigation.navigate('OpcaoPagamento')}
+          title=" Efetuar Pagamento "
+          color="#FFC107"
+          accessibilityLabel="Learn more about this purple button"
+        />
 
 
 

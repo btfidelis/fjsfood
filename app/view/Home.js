@@ -38,7 +38,7 @@ export default class Home extends Component { //app nome do arquivo
   }
 
   static navigationOptions = {
-    title: 'App',
+    title: 'NahoraTche',
   };
 
   componentDidMount() {
@@ -60,12 +60,6 @@ export default class Home extends Component { //app nome do arquivo
   }
 
   render() {
-    console.log('haha', {
-      latitude: this.state.location.coords.latitude,
-      longitude: this.state.location.coords.longitude,
-      latitudeDelta: this.state.location.coords.accuracy,
-      longitudeDelta: this.state.location.coords.accuracy,
-    })
 
     const restaurants = [
       { id: 'abc', name: 'Menta Café', lng: -51.182212, lat: -29.9168324 }, 
@@ -86,7 +80,7 @@ export default class Home extends Component { //app nome do arquivo
               coordinate={{ latitude: marker.lat, longitude: marker.lng }}
               title={marker.name}
               description={"Test"}
-              onCalloutPress={() => alert('Oi')}
+              onCalloutPress={() => this.props.navigation.navigate('Info')}
             />
           ))}
         </MapView>

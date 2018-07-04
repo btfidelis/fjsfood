@@ -10,8 +10,7 @@ const styles = StyleSheet.create({
     container: {
         display: 'flex',
         flexDirection: 'column',
-        color: 'red',
-        height: '23%',
+        height: '30%',
         alignItems: 'center',
         justifyContent: 'space-between',
         marginTop: 180,

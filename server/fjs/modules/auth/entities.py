@@ -8,6 +8,9 @@ class User(db.Model):
     password = db.Column(db.String(255), nullable=False)
     login_token = db.Column(db.String(255), unique=True)
 
+    def st(self, cond):
+        return {'user': 'teste', 'password': 'teste', 'email': 'teste@teste.com'}
+
     def __repr__(self):
         return '<User %r>' % self.username
 
