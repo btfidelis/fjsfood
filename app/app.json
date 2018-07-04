@@ -1,10 +1,16 @@
 {
   "expo": {
     "sdkVersion": "26.0.0",
+    "icon": "./assets/icon.png",
+    "name": "NahoraTchê",
+    "slug": "nahora-tche",
+    "privacy": "public",
     "android": {
       "package": "br.com.unilasalle.fjsfood",
       "config": {
-        "googleMaps": { "apiKey": "AIzaSyC41nxd23_zegqGSrLlS5PGzczv0l6Aq_w" }
+        "googleMaps": { 
+          "apiKey": "AIzaSyC41nxd23_zegqGSrLlS5PGzczv0l6Aq_w" 
+        }
       }
     }
   }

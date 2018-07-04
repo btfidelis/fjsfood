@@ -16,11 +16,22 @@ import PagamentoCartao from './view/PagamentoCartao'
 import AuthLoadingScreen from './components/AuthLoading'
 
 import { createStackNavigator, createSwitchNavigator } from 'react-navigation'
-
 import { colors } from './utils/styles'
 
 const AuthStack = createStackNavigator({
   Login: Login
+}, 
+{
+  initialRouteName: 'Login',
+  navigationOptions: {
+    headerStyle: {
+      backgroundColor: colors.darkPrimaryColor,
+    },
+    headerTintColor: '#fff',
+    headerTitleStyle: {
+      fontWeight: 'bold',
+    },
+  }
 })
 
 
@@ -41,7 +52,7 @@ const AppStack = createStackNavigator({
 
 },
 {
-  initialRouteName: 'Carrinho',
+  initialRouteName: 'Home',
   navigationOptions: {
     headerStyle: {
       backgroundColor: colors.darkPrimaryColor,
@@ -61,6 +72,6 @@ export default createSwitchNavigator(
     Auth: AuthStack
   },
   {
-    initialRouteName: 'AuthLoading'
+    initialRouteName: 'Auth',
   }
 )
