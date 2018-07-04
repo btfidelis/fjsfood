@@ -140,7 +140,7 @@ class Menu extends Component {
               <View style={styleList.list}>
                 <Image source={{ uri: item.img }} style={{ flex: 2, width: 100, height: 100 }} />
                 <Text style={{ flex:2, marginLeft: 5, }}>
-                  {item.name + "\n" + item.categoria + "\n" + item.valor + "\n"}
+                  {item.name + "\n" + item.categoria + "\nR$ " + formataPreco(item.valor) + "\n"}
                 </Text>
                 <TouchableHighlight style={styleList.cartBtn} onPress={() => this.setItemQtn(item.key, -1)} >
                   <Text style={{ flex: 1, fontSize: 30, marginLeft: 16  }} >-</Text>

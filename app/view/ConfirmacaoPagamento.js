@@ -39,7 +39,7 @@ const styles = StyleSheet.create({
 export default class ConfirmacaoPagamento extends Component { //app nome do arquivo
     
     static navigationOptions = {
-        title: 'App',
+        title: 'Pagamento',
       };
 
     constructor(props) {

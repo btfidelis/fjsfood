@@ -16,11 +16,6 @@ const styles = StyleSheet.create({
         marginTop: 180,
     },
 
-    /*buttonStyle: {
-        flex: 1,
-        marginTop: 8,
-    },*/
-
 });
 
 
@@ -30,7 +25,7 @@ export default class OpcaoPagamento extends Component { //app nome do arquivo
     }
   
     static navigationOptions = {
-      title: 'App',
+      title: 'Forma de Pagamento',
     };
 
 

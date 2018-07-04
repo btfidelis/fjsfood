@@ -1,76 +1,80 @@
-import React, { Component } from 'react';
-import { AppRegistry, View, Image, StyleSheet, TextInput, Button, Text, TouchableHighlight } from 'react-native';
+import React, { Component } from "react";
+import { StyleSheet, View, Switch, Button, Text } from "react-native";
+import { CreditCardInput, LiteCreditCardInput } from "react-native-credit-card-input"; // 0.4.1
+import Spinner from 'react-native-loading-spinner-overlay'
 
-const styles = StyleSheet.create({
+const s = StyleSheet.create({
+    switch: {
+        alignSelf: "center",
+        marginTop: 20,
+        marginBottom: 20,
+    },
     container: {
-        flex: 1,
-        color: 'red',
-        backgroundColor: '#fff',
-        
-        justifyContent: 'center',
+        marginTop: 60,
     },
-
-    ladoAlado:{
-        flexDirection: 'row',
+    label: {
+        color: "black",
+        fontSize: 12,
     },
-
+    input: {
+        fontSize: 16,
+        color: "black",
+    },
 });
 
+
 export default class PagamentoCartao extends Component {
-    static navigationOptions = { //Colocar esse trecho sempre para dar "cor" ao app  
-        title: 'App',
-      };
-    constructor(props) {
-    super(props);
-    this.state = {
-        bodyText: 'Esqueci meu usuario/senha'
-      };
-  } 
-  
-  onPress = () => { //Defini o que acontece quando o texto clicável é clicado
-    this.setState({
-      count: this.props.navigation.navigate('Home') // Mudar a variavel 'Home' para definir para ir onde ir para mudar o login/senha
-    })
+  constructor(props) {
+    super(props)
+  }
+
+  static navigationOptions = {
+    title: 'Pagamento',
+  };
+
+  state = { loading: false }
+  _onChange = (formData) => console.log(JSON.stringify(formData, null, " "));
+  _onFocus = (field) => console.log("focusing", field);
+  _setUseLiteCreditCardInput = (useLiteCreditCardInput) => this.setState({ useLiteCreditCardInput });
+
+  fakePayment = () => {
+    const threeSeconds = 3000
+    this.setState(() => ({ loading: true }))
+
+    const paymentSuccess = () => {
+      this.setState(() => ({ loading: false }))
+      this.props.navigation.navigate('ConfirmacaoPagamento')
+    }
+
+    setTimeout(paymentSuccess.bind(this), threeSeconds);
   }
 
   render() {
     return (
-        <View style={styles.container}>
-             
-            <Text>
-                 <Text>   </Text>Número do cartão
-            </Text>
-            <TextInput style = {{textAlign:'left', width:'70%', padding: 1, fontSize: 18, margin: 1, borderRadius: 4 }}  onChange={this.textInputDidChange} />
-            <Text>
-                <Text>   </Text>Nome impresso no cartão
-            </Text>
-            <TextInput style = {{textAlign:'left', width:'70%', padding: 1, fontSize: 18, margin: 1, borderRadius: 4 }}  onChange={this.textInputDidChange} />
-            <View style={styles.ladoAlado}>
-                <Text>
-                    <Text>   </Text>Validade
-                </Text>
-                <TextInput style = {{textAlign:'left', width:'30%', padding: 6, fontSize: 18, margin: 5, borderRadius: 4 }} placeholder="Mes"  />
-                <TextInput style = {{textAlign:'left', width:'30%', padding: 6, fontSize: 18, margin: 5, borderRadius: 4 }} placeholder="Ano"  />
-            </View>
-            <Text>
-                 <Text>   </Text>Código de Segurança
-            </Text>
-            <TextInput style = {{textAlign:'left', width:'38%', padding: 1, fontSize: 18, margin: 1, borderRadius: 4 }}  onChange={this.textInputDidChange} />
-            <Text>
-                 <Text>   </Text>Parcelar em
-            </Text>
-            <TextInput style = {{textAlign:'left', width:'38%', padding: 1, fontSize: 18, margin: 1, borderRadius: 4 }}  onChange={this.textInputDidChange} />
+      <View style={s.container}>
+        <Spinner visible={this.state.loading} />
+        <CreditCardInput
+            autoFocus
 
-            
+            requiresName
+            requiresCVC
+            requiresPostalCode
 
-            <Button style={styles.buttonStyle}
-                onPress={() => this.props.navigation.navigate('Home')}
-                title="Pagar com cartão de crédito"
-                color="#FFC107"
-                accessibilityLabel="Learn more about this purple button"
-            />
-                
+            cardScale={1.0}
+            labelStyle={s.label}
+            inputStyle={s.input}
+            validColor={"black"}
+            invalidColor={"red"}
+            placeholderColor={"darkgray"}
+            onFocus={this._onFocus}
+            onChange={this._onChange} />
+        <Text style={{ marginTop: 50 }} ></Text>
+        <Button 
+          onPress={this.fakePayment.bind(this)}
+          title="Efetuar Pagamento"
+          color="#FFC107"
+        />
       </View>
     );
   }
-}; // adicionar  fontFamily:'roboto' 
+}
