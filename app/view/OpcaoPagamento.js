@@ -39,24 +39,21 @@ export default class OpcaoPagamento extends Component { //app nome do arquivo
             <View style={styles.container}> 
                 
                     <Button //style={styles.buttonStyle}
-                        onPress={() => this.props.navigation.navigate('Login')}// Trocar navegação para tela de dados do pagamento
+                        onPress={() => this.props.navigation.navigate('PagamentoCartao')}// Trocar navegação para tela de dados do pagamento
                         title="   Cartão de Crédito   "
                         color="#FFC107"
-                        accessibilityLabel="Learn more about this purple button"
                     />
                 
                     <Button //style={styles.buttonStyle}
-                    onPress={() => this.props.navigation.navigate('Login')}// Trocar navegação para tela de dados do pagamento
-                    title="   Paypal   "
-                    color="#FFC107"
-                    accessibilityLabel="Learn more about this purple button"
+                        onPress={() => this.props.navigation.navigate('Login')}// Trocar navegação para tela de dados do pagamento
+                        title="   Paypal   "
+                        color="#FFC107"
                     />
 
                      <Button style={styles.buttonStyle}
-                    onPress={() => this.props.navigation.navigate('Login')}// Trocar navegação para tela de dados do pagamento
-                    title="   Dinheiro   "
-                    color="#FFC107"
-                    accessibilityLabel="Learn more about this purple button"
+                        onPress={() => this.props.navigation.navigate('PagamentoDinheiro')}// Trocar navegação para tela de dados do pagamento
+                        title="   Dinheiro   "
+                        color="#FFC107"
                     />
                
             </View>

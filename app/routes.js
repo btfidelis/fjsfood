@@ -7,11 +7,11 @@ import Carrinho from './view/Carrinho'
 import Login from './view/Login'
 import MenuRestaurante from './view/MenuRestaurante'
 import Avaliacao from './view/Avaliacao'
-import Loading from './view/Loading'
-//import Carrinho from './view/Carrinho'
 import ConfirmacaoPagamento from './view/ConfirmacaoPagamento'
 import InformacoesUsuario from './view/InformacoesUsuario'
+import PagamentoDinheiro from './view/PagamentoDinheiro'
 import Info from './view/Info'
+import PagamentoCartao from './view/PagamentoCartao'
 
 import AuthLoadingScreen from './components/AuthLoading'
 
@@ -31,11 +31,14 @@ const AppStack = createStackNavigator({
   ListaRestaurante: ListaRestaurante,
   MenuRestaurante: MenuRestaurante,
   Avaliacao: Avaliacao,
+  PagamentoCartao: PagamentoCartao,
   OpcaoPagamento: OpcaoPagamento,
   Carrinho: Carrinho,
   ConfirmacaoPagamento: ConfirmacaoPagamento,
   InformacoesUsuario: InformacoesUsuario,
   Info: Info,
+  PagamentoDinheiro:PagamentoDinheiro,
+
 },
 {
   initialRouteName: 'Carrinho',
