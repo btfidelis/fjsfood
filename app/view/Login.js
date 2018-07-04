@@ -1,5 +1,17 @@
 import React, { Component } from 'react';
-import { AppRegistry, View, Image, StyleSheet, TextInput, Button, Text, TouchableHighlight } from 'react-native';
+import Spinner from 'react-native-loading-spinner-overlay';
+
+
+import { 
+  View, 
+  StyleSheet,
+  TextInput,
+  Button,
+  Text,
+  TouchableHighlight,
+  AsyncStorage
+} from 'react-native';
+import { colors } from '../utils/styles';
 
 const styles = StyleSheet.create({
     container: {
@@ -13,43 +25,42 @@ const styles = StyleSheet.create({
 });
 
 export default class Login extends Component {
-    static navigationOptions = { //Colocar esse trecho sempre para dar "cor" ao app
-        title: 'App',
-      };
-    constructor(props) {
+  static navigationOptions = { //Colocar esse trecho sempre para dar "cor" ao app
+    title: 'App',
+  };
+  
+  constructor(props) {
     super(props);
     this.state = {
-        bodyText: 'Esqueci meu usuario/senha'
-      };
+      bodyText: 'Esqueci meu usuario/senha'
+    };
   } 
   
-  onPress = () => { //Defini o que acontece quando o texto clicável é clicado
-    this.setState({
-      count: this.props.navigation.navigate('Home') // Mudar a variavel 'Home' para definir para ir onde ir para mudar o login/senha
-    })
+  onPress = async () => { //Defini o que acontece quando o texto clicável é clicado
+    this.setState(() => ({ loading: true }))
+    await AsyncStorage.setItem('userToken', 'abc')
+    
+    this.props.navigation.navigate('App') // Mudar a variavel 'Home' para definir para ir onde ir para mudar o login/senha
   }
 
   render() {
     return (
-        <View style={styles.container}> 
-             <TextInput style = {{textAlign:'left', width:'70%', padding: 6, fontSize: 18, margin: 10, borderRadius: 4 }} placeholder="Usuario" onChange={this.textInputDidChange} />
-             <TextInput style = {{textAlign:'left', width:'70%', padding: 6, fontSize: 18, margin: 10, borderRadius: 4 }} secureTextEntry={true} placeholder="Senha" onChange={this.textInputDidChange} />
-             <Button style={styles.buttonStyle}
-                onPress={() => this.props.navigation.navigate('Home')}
-                title="   Login   "
-                color="#FFC107"
-                accessibilityLabel="Learn more about this purple button"
-              />
-                <TouchableHighlight /* Dentro desse Touchable... vai tudo que é pra ser o texto clicável */
-                style={styles.button}
-                onPress={this.onPress} 
-                >
-                    <Text style={{marginTop:15}}> {/* Esse Text  imprimir algum texto que é definido mais pra cima em this.state */}
-                    <Text>
-                    {this.state.bodyText}
-                    </Text>
-                    </Text>
-                </TouchableHighlight>
+      <View style={styles.container}>
+        <Spinner visible={this.state.loading} textContent={"Carregando..."} textStyle={colors.textPrimaryColor} />
+        <TextInput style = {{textAlign:'left', width:'70%', padding: 6, fontSize: 18, margin: 10, borderRadius: 4 }} placeholder="Usuario" onChange={this.textInputDidChange} />
+        <TextInput style = {{textAlign:'left', width:'70%', padding: 6, fontSize: 18, margin: 10, borderRadius: 4 }} secureTextEntry={true} placeholder="Senha" onChange={this.textInputDidChange} />
+        <Button style={styles.buttonStyle}
+          onPress={() => this.props.navigation.navigate('Home')}
+          title="   Login   "
+          color="#FFC107"
+          accessibilityLabel="Learn more about this purple button"
+        />
+        <TouchableHighlight /* Dentro desse Touchable... vai tudo que é pra ser o texto clicável */
+          style={styles.button}
+          onPress={this.onPress} 
+        >
+          <Text style={{ marginTop: 15 }} >{this.state.bodyText}</Text>
+        </TouchableHighlight>
       </View>
     );
   }

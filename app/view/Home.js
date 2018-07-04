@@ -1,6 +1,6 @@
 import React, { Component } from 'react'
 import { StyleSheet, View } from 'react-native'
-import MapView from 'react-native-maps'
+import MapView, { Marker } from 'react-native-maps'
 import { ActionButton } from 'react-native-material-ui'
 import { Permissions, Location } from 'expo'
 
@@ -41,7 +41,7 @@ export default class Home extends Component { //app nome do arquivo
     title: 'App',
   };
 
-  componentWillMount() {
+  componentDidMount() {
     this.getLocations()
   }
 
@@ -60,7 +60,16 @@ export default class Home extends Component { //app nome do arquivo
   }
 
   render() {
-    console.log(this.state.location)
+    console.log('haha', {
+      latitude: this.state.location.coords.latitude,
+      longitude: this.state.location.coords.longitude,
+      latitudeDelta: this.state.location.coords.accuracy,
+      longitudeDelta: this.state.location.coords.accuracy,
+    })
+
+    const restaurants = [
+      { id: 'abc', name: 'Menta Café', lng: -51.182212, lat: -29.9168324 }, 
+    ]
     return (
       <View style={styles.container}>
         <MapView
@@ -68,10 +77,19 @@ export default class Home extends Component { //app nome do arquivo
           initialRegion={{
             latitude: this.state.location.coords.latitude,
             longitude: this.state.location.coords.longitude,
-            latitudeDelta: 0,
-            longitudeDelta: 0,
+            latitudeDelta: this.state.location.coords.accuracy,
+            longitudeDelta: this.state.location.coords.accuracy,
           }}
-        />
+        >
+          {restaurants.map(marker => (
+            <Marker 
+              coordinate={{ latitude: marker.lat, longitude: marker.lng }}
+              title={marker.name}
+              description={"Test"}
+              onCalloutPress={() => alert('Oi')}
+            />
+          ))}
+        </MapView>
         <ActionButton icon="camera" onPress={() => this.props.navigation.navigate('QRCodeScanner')} />
       </View>
     );
