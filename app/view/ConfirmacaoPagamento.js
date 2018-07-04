@@ -59,12 +59,7 @@ export default class ConfirmacaoPagamento extends Component { //app nome do arqu
                     Seu pagamento foi aprovado!
                 </Text>
 
-                <Button style={styles.buttonStyle}
-                        onPress={() => this.props.navigation.navigate('Carrinho')}// Trocar navegação para tela de dados do pagamento
-                        title="   Avalie seu pedido   "
-                        color="#FFC107"
-                        accessibilityLabel="Learn more about this purple button"
-                />
+                
             </View>
 
             
